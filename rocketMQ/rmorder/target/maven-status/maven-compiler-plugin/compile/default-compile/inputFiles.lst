@@ -1,0 +1,13 @@
+F:\workspace\evan\order\src\main\java\com\distributed\order\mapper\OrderMapper.java
+F:\workspace\evan\order\src\main\java\com\distributed\order\service\IOrderTaskService.java
+F:\workspace\evan\order\src\main\java\com\distributed\order\entity\OrderInfo.java
+F:\workspace\evan\order\src\main\java\com\distributed\order\service\IRedisService.java
+F:\workspace\evan\order\src\main\java\com\distributed\order\controller\RedisController.java
+F:\workspace\evan\order\src\main\java\com\distributed\order\service\impl\RedisServiceImpl.java
+F:\workspace\evan\order\src\main\java\com\distributed\order\remote\DistributedCm.java
+F:\workspace\evan\order\src\main\java\com\distributed\order\config\config.java
+F:\workspace\evan\order\src\main\java\com\distributed\order\dto\OrderDTO.java
+F:\workspace\evan\order\src\main\java\com\distributed\order\controller\XcOrderController.java
+F:\workspace\evan\order\src\main\java\com\distributed\order\service\impl\OrderTaskServiceImpl.java
+F:\workspace\evan\order\src\main\java\com\distributed\order\OrderApplication.java
+F:\workspace\evan\order\src\main\java\com\distributed\order\entity\GoodsInfo.java

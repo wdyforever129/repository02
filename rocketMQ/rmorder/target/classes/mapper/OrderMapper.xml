@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.distributed.order.mapper.OrderMapper">
+
+    <insert id="addOrder" parameterType="com.distributed.order.entity.OrderInfo">
+        insert into ORDER_INFO
+        <trim suffixOverrides="," prefix="(" suffix=")">
+            <if test="id != null or id !=''">
+                ID,
+            </if>
+            <if test="name != null or name != ''">
+                NAME,
+            </if>
+            <if test="createTime != null or createTime != ''">
+                CREATE_TIME,
+            </if>
+            <if test="orderState != null or orderState != ''">
+                ORDER_STATE,
+            </if>
+            <if test="commodityId != null or commodityId != ''">
+                COMMODITY_ID,
+            </if>
+            <if test="orderId != null or orderId != ''">
+                ORDER_ID,
+            </if>
+            <if test="orderMoney != null or orderMoney != ''">
+                ORDER_MONEY,
+            </if>
+        </trim>
+        <trim suffixOverrides="," prefix="values (" suffix=")">
+            <if test="id != null or id != ''">
+                #{id, jdbcType=INTEGER},
+            </if>
+            <if test="name != null or name != ''">
+                #{name, jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null or createTime != ''">
+                #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderState != null or orderState != ''">
+                #{orderState, jdbcType=VARCHAR},
+            </if>
+            <if test="commodityId != null or commodityId != ''">
+                #{commodityId, jdbcType=VARCHAR},
+            </if>
+            <if test="orderId != null or orderId != ''">
+                #{orderId, jdbcType=VARCHAR},
+            </if>
+            <if test="orderMoney != null or orderMoney != ''">
+                #{orderMoney, jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="getByOrderId" parameterType="com.distributed.order.entity.OrderInfo"
+            resultType="com.distributed.order.entity.OrderInfo">
+        SELECT ID, NAME, CREATETIME, ORDERSTATE, COMMODITYID, ORDERID, ORDERMONEY FROM ORDER_INFO
+        <where>
+            <if test="orderId != null and orderId != null">
+                ORDER_ID = #{orderId, jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+</mapper>

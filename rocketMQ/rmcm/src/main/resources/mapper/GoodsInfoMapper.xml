@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rocketmq.rmcm.mapper.GoodsInfoMapper">
+
+    <insert id="addGoodsInfo" parameterType="com.rocketmq.rmcm.entity.GoodsInfo">
+        insert into GOODS_INFO
+        <trim suffixOverrides="," prefix="(" suffix=")">
+            <if test="goodsId != null or goodsId !=''">
+                GOODS_ID,
+            </if>
+            <if test="name != null or name != ''">
+                NAME,
+            </if>
+            <if test="price != null or price != ''">
+                PRICE,
+            </if>
+            <if test="unit != null or unit != ''">
+                UNIT,
+            </if>
+            <if test="description != null or description != ''">
+                DESCRIPTION,
+            </if>
+        </trim>
+        <trim suffixOverrides="," prefix="values (" suffix=")">
+            <if test="goodsId != null or goodsId != ''">
+                #{goodsId, jdbcType=INTEGER},
+            </if>
+            <if test="name != null or name != ''">
+                #{name, jdbcType=VARCHAR},
+            </if>
+            <if test="price != null or price != ''">
+                #{price, jdbcType=TIMESTAMP},
+            </if>
+            <if test="unit != null or unit != ''">
+                #{unit, jdbcType=TIMESTAMP},
+            </if>
+            <if test="description != null or description != ''">
+                #{description, jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="getByGoodsId" parameterType="com.rocketmq.rmcm.entity.GoodsInfo" resultType="com.rocketmq.rmcm.entity.GoodsInfo">
+        SELECT GOODS_ID as goodsId, name, price, unit, description FROM GOODS_INFO
+        <where>
+            <if test="goodsId != null and goodsId != null">
+                GOODS_ID = #{goodsId, jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+</mapper>
