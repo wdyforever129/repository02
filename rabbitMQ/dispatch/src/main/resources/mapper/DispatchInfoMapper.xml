@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.evan.dispatch.mapper.DispatchInfoMapper">
+
+    <insert id="addDispatchInfo" parameterType="com.evan.dispatch.entity.DispatchInfo">
+        insert into DISPATCH_INFO
+        <trim suffixOverrides="," prefix="(" suffix=")">
+            <if test="id != null or id !=''">
+                ID,
+            </if>
+            <if test="orderId != null or orderId != ''">
+                ORDER_ID,
+            </if>
+            <if test="dispatchRoute != null or dispatchRoute != ''">
+                DISPATCH_ROUTE,
+            </if>
+            <if test="takeoutUserId != null or takeoutUserId != ''">
+                TAKEOUT_USERID,
+            </if>
+        </trim>
+        <trim suffixOverrides="," prefix="values (" suffix=")">
+            <if test="id != null or id != ''">
+                #{id, jdbcType=INTEGER},
+            </if>
+            <if test="orderId != null or orderId != ''">
+                #{orderId, jdbcType=VARCHAR},
+            </if>
+            <if test="dispatchRoute != null or dispatchRoute != ''">
+                #{dispatchRoute, jdbcType=TIMESTAMP},
+            </if>
+            <if test="takeoutUserId != null or takeoutUserId != ''">
+                #{takeoutUserId, jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="getByOrderId" parameterType="com.evan.dispatch.entity.DispatchInfo"
+            resultType="com.evan.dispatch.entity.DispatchInfo">
+        SELECT ID, NAME, CREATETIME, ORDERSTATE, COMMODITYID, ORDERID, ORDERMONEY FROM ORDER_INFO
+        <where>
+            <if test="orderId != null and orderId != null">
+                ORDER_ID = #{orderId, jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateByIdAndVersion" parameterType="java.lang.String">
+        update XC_ORDER_TASK set version = #{version}
+        <where>
+            <if test="id != null ">
+                id = #{id}
+            </if>
+            <if test="version != null">
+                AND version = #{version}-1
+            </if>
+        </where>
+    </update>
+
+    <select id="getById" parameterType="java.lang.String" resultType="com.evan.dispatch.entity.DispatchInfo">
+        SELECT id, create_time as createTime, update_time as updateTime, delete_time as deleteTime, task_type as
+        taskType, mq_exchange as mqExchange, mq_routingkey as mqRoutingkey, request_body as requestBody, version,
+        status, errormsg as errorMsg FROM XC_ORDER_TASK
+        <where>
+            <if test="id != null ">
+                id = #{id}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateById" parameterType="com.evan.dispatch.entity.DispatchInfo">
+        update XC_ORDER_TASK set update_time = #{updateTime}
+        <where>
+            <if test="id != null ">
+                id = #{id}
+            </if>
+        </where>
+    </update>
+
+    <delete id="deleteById" parameterType="com.evan.dispatch.entity.DispatchInfo">
+        delete from XC_ORDER_TASK
+        <where>
+            <if test="id != null ">
+                id = #{id}
+            </if>
+        </where>
+    </delete>
+</mapper>
