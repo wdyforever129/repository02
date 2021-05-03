@@ -17,6 +17,9 @@
             <if test="takeoutUserId != null or takeoutUserId != ''">
                 TAKEOUT_USERID,
             </if>
+            <if test="createTime != null or createTime != ''">
+                create_time,
+            </if>
         </trim>
         <trim suffixOverrides="," prefix="values (" suffix=")">
             <if test="id != null or id != ''">
@@ -31,12 +34,15 @@
             <if test="takeoutUserId != null or takeoutUserId != ''">
                 #{takeoutUserId, jdbcType=VARCHAR},
             </if>
+            <if test="createTime != null or createTime != ''">
+                #{createTime, jdbcType=TIMESTAMP},
+            </if>
         </trim>
     </insert>
 
     <select id="getByOrderId" parameterType="com.rocketmq.rmdispatch.entity.DispatchInfo"
             resultType="com.rocketmq.rmdispatch.entity.DispatchInfo">
-        SELECT ID, NAME, CREATETIME, ORDERSTATE, COMMODITYID, ORDERID, ORDERMONEY FROM ORDER_INFO
+        SELECT ID, ORDER_ID, DISPATCH_ROUTE, TAKEOUT_USERID, CREATETIME FROM DISPATCH_INFO
         <where>
             <if test="orderId != null and orderId != null">
                 ORDER_ID = #{orderId, jdbcType=VARCHAR}
@@ -45,9 +51,9 @@
     </select>
 
     <update id="updateByIdAndVersion" parameterType="java.lang.String">
-        update XC_ORDER_TASK set version = #{version}
+        update DISPATCH_INFO set version = #{version}
         <where>
-            <if test="id != null ">
+            <if test="id != null and id != null">
                 id = #{id}
             </if>
             <if test="version != null">
@@ -59,7 +65,7 @@
     <select id="getById" parameterType="java.lang.String" resultType="com.rocketmq.rmdispatch.entity.DispatchInfo">
         SELECT id, create_time as createTime, update_time as updateTime, delete_time as deleteTime, task_type as
         taskType, mq_exchange as mqExchange, mq_routingkey as mqRoutingkey, request_body as requestBody, version,
-        status, errormsg as errorMsg FROM XC_ORDER_TASK
+        status, errormsg as errorMsg FROM DISPATCH_INFO
         <where>
             <if test="id != null ">
                 id = #{id}
@@ -68,7 +74,7 @@
     </select>
 
     <update id="updateById" parameterType="com.rocketmq.rmdispatch.entity.DispatchInfo">
-        update XC_ORDER_TASK set update_time = #{updateTime}
+        update DISPATCH_INFO set update_time = #{updateTime}
         <where>
             <if test="id != null ">
                 id = #{id}
@@ -77,7 +83,7 @@
     </update>
 
     <delete id="deleteById" parameterType="com.rocketmq.rmdispatch.entity.DispatchInfo">
-        delete from XC_ORDER_TASK
+        delete from DISPATCH_INFO
         <where>
             <if test="id != null ">
                 id = #{id}

@@ -8,10 +8,10 @@
         <version>2.4.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.evan</groupId>
-    <artifactId>dispatch</artifactId>
+    <groupId>com.rocketmq</groupId>
+    <artifactId>rmdispatch</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>dispatch</name>
+    <name>rmdispatch</name>
     <description>派单系统</description>
     <properties>
         <java.version>1.8</java.version>
@@ -43,10 +43,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -61,6 +57,12 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-spring-boot-starter</artifactId>
+            <version>2.0.3</version>
         </dependency>
     </dependencies>
 
