@@ -1,10 +1,15 @@
 package com.rocketmq.rmorder.service;
 
 import com.rocketmq.rmorder.dto.OrderDTO;
+import com.rocketmq.rmorder.model.OrderDispatchEvent;
 
 public interface IOrderTaskService {
 
-    String addOrderAndDispatch(OrderDTO orderDTO);
+    //向MQ发送消息
+    String order(OrderDTO orderDTO);
+
+    //更新本地事务
+    void addOrderAndDispatch(OrderDispatchEvent orderDTO);
 
     /*List<XcOrderTask> listByUpdateTimeBefore(Date newDate, Date beforeDate);
 

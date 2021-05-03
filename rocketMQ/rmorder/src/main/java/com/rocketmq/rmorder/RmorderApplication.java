@@ -11,10 +11,10 @@ import org.springframework.context.annotation.Bean;
 @EnableFeignClients
 @EnableEurekaClient
 @SpringBootApplication
-public class OrderApplication {
+public class RmorderApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(OrderApplication.class, args);
+        SpringApplication.run(RmorderApplication.class, args);
     }
 
     @Bean
@@ -23,4 +23,5 @@ public class OrderApplication {
         config.useSingleServer().setAddress("redis://localhost:6379").setDatabase(0);
         return (Redisson) Redisson.create(config);
     }
+
 }

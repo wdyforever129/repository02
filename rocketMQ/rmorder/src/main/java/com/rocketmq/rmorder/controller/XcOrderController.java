@@ -15,6 +15,6 @@ public class XcOrderController {
 
     @RequestMapping(value = "/addOrder",method = RequestMethod.POST)
     public String addOrder(@RequestBody OrderDTO orderDTO){
-        return orderTaskService.addOrderAndDispatch(orderDTO);
+        return orderTaskService.order(orderDTO);
     }
 }

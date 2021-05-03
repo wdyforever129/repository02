@@ -11,9 +11,6 @@
             <if test="name != null or name != ''">
                 NAME,
             </if>
-            <if test="createTime != null or createTime != ''">
-                CREATE_TIME,
-            </if>
             <if test="orderState != null or orderState != ''">
                 ORDER_STATE,
             </if>
@@ -26,6 +23,9 @@
             <if test="orderMoney != null or orderMoney != ''">
                 ORDER_MONEY,
             </if>
+            <if test="createTime != null or createTime != ''">
+                CREATE_TIME,
+            </if>
         </trim>
         <trim suffixOverrides="," prefix="values (" suffix=")">
             <if test="id != null or id != ''">
@@ -33,9 +33,6 @@
             </if>
             <if test="name != null or name != ''">
                 #{name, jdbcType=VARCHAR},
-            </if>
-            <if test="createTime != null or createTime != ''">
-                #{createTime, jdbcType=TIMESTAMP},
             </if>
             <if test="orderState != null or orderState != ''">
                 #{orderState, jdbcType=VARCHAR},
@@ -48,6 +45,9 @@
             </if>
             <if test="orderMoney != null or orderMoney != ''">
                 #{orderMoney, jdbcType=DECIMAL},
+            </if>
+            <if test="createTime != null or createTime != ''">
+                #{createTime, jdbcType=TIMESTAMP},
             </if>
         </trim>
     </insert>
