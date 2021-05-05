@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.besteffortnotify.rmbenpays.mapper.AccountPayMapper">
+
+    <insert id="insert" parameterType="com.besteffortnotify.rmbenpays.entity.AccountPay">
+        insert into ACCOUNT_PAY
+        <trim suffixOverrides="," prefix="(" suffix=")">
+            <if test="id != null or id !=''">
+                id,
+            </if>
+            <if test="accountNo != null or accountNo != ''">
+                account_no,
+            </if>
+            <if test="payAmount != null or payAmount != ''">
+                pay_amount,
+            </if>
+            <if test="status != null or status != ''">
+                status,
+            </if>
+            <if test="createTime != null or createTime != ''">
+                create_time,
+            </if>
+            <if test="updateTime != null or updateTime != ''">
+                update_time,
+            </if>
+            <if test="createBy != null or createBy != ''">
+                create_by,
+            </if>
+            <if test="updateBy != null or updateBy != ''">
+                update_by,
+            </if>
+        </trim>
+        <trim suffixOverrides="," prefix="values (" suffix=")">
+            <if test="id != null or id !=''">
+                #{id, jdbcType=VARCHAR},
+            </if>
+            <if test="accountNo != null or accountNo != ''">
+                #{accountNo, jdbcType=VARCHAR},
+            </if>
+            <if test="payAmount != null or payAmount != ''">
+                #{payAmount, jdbcType=DECIMAL},
+            </if>
+            <if test="status != null or status != ''">
+                #{status, jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null or createTime != ''">
+                #{createTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null or updateTime != ''">
+                #{updateTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null or createBy != ''">
+                #{createBy, jdbcType=VARCHAR},
+            </if>
+            <if test="updateBy != null or updateBy != ''">
+                #{updateBy, jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="getById" parameterType="java.lang.String" resultType="com.besteffortnotify.rmbenpays.entity.AccountPay">
+        SELECT ID, ACCOUNT_NO as accountNo, PAY_AMOUNT as payAmount, STATUS, CREATE_TIME as createTime,
+        UPDATE_TIME as updateTime, CREATE_BY as createBy, UPDATE_BY as updateBy
+        FROM ACCOUNT_PAY
+        <where>
+            <if test="id != null and id != null">
+                id = #{id, jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+</mapper>
