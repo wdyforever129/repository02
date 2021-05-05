@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.besteffortnotify.rmbenas.mapper.AccountInfoMapper">
+
+    <update id="updateAccountBalance" parameterType="com.besteffortnotify.rmbenas.entity.AccountInfo">
+        update ACCOUNT_INFO
+        set
+        <if test="amount != null or amount !=''">
+            account_balance = #{amount, jdbcType=DECIMAL},
+        </if>
+        <if test="updateTime != null or updateTime !=''">
+            update_time = #{updateTime, jdbcType=TIMESTAMP}
+        </if>
+        <where>
+            <if test="accountNo != null or accountNo != ''">
+                account_no = #{accountNo, jdbcType=VARCHAR}
+            </if>
+        </where>
+    </update>
+
+    <select id="getByAccountNo" parameterType="java.lang.String"
+            resultType="com.besteffortnotify.rmbenas.entity.AccountInfo">
+        SELECT ID, ACCOUNT_NAME as accountName, ACCOUNT_NO as accountNo, ACCOUNT_PASSWORD as accountPassword,
+        ACCOUNT_BALANCE as accountBalance, CREATE_TIME as createTime, UPDATE_TIME as updateTime, CREATE_BY as createBy,
+        UPDATE_BY as updateBy
+        FROM ACCOUNT_INFO
+        <where>
+            <if test="accountNo != null and accountNo != null">
+                ACCOUNT_NO = #{accountNo, jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+</mapper>
